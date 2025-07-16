@@ -1,0 +1,44 @@
+[package]
+edition = "2021"
+name = "esp32_ws2812b"
+version = "0.1.0"
+description = "A crate that provides control over the WS2812B LED."
+authors = ["nor"]
+keywords = ["embedded", "no-std", "ws2812b", "RGB", "LED", "esp32"]
+repository = "https://github.com/wendell1002/esp32-ws2812b"
+homepage = "https://github.com/wendell1002/esp32-ws2812b"
+documentation = "https://docs.rs/esp32-ws2812b"
+readme = "../README.md"
+
+
+[dependencies]
+
+esp-hal = { version = "=1.0.0-beta.1", default-features = false, features = [
+  "unstable",
+] }
+critical-section = "1.2.0"
+smart-leds = "0.4.0"
+smart-leds-trait = "0.3.1"
+
+[features]
+default = []
+esp32 = ["esp-hal/esp32"]
+esp32c3 = ["esp-hal/esp32c3"]
+esp32c6 = ["esp-hal/esp32c6"]
+esp32s2 = ["esp-hal/esp32s2"]
+esp32s3 = ["esp-hal/esp32s3"]
+esp32h2 = ["esp-hal/esp32h2"]
+
+[profile.dev]
+# Rust debug is too slow.
+# For debug builds always builds with some optimization
+opt-level = "s"
+
+[profile.release]
+codegen-units = 1        # LLVM can perform better optimizations using a single thread
+debug = 2
+debug-assertions = false
+incremental = false
+lto = 'fat'
+opt-level = 's'
+overflow-checks = false
