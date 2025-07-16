@@ -9,6 +9,7 @@ repository = "https://github.com/wendell1002/esp32-ws2812b"
 homepage = "https://github.com/wendell1002/esp32-ws2812b"
 documentation = "https://docs.rs/esp32-ws2812b"
 readme = "./README.md"
+license = "MIT"
 
 
 [dependencies]
